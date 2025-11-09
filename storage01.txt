@@ -1,0 +1,115 @@
+in azure subscription
+
+free tier = 30days = 200$
+pas as you go
+
+
+	tenant
+subscription-1,subscription-2.subscription-3
+
+resourcegroup= collection of resources
+
+resource- vm,storage,database,etc
+
+
+resource group comes under region wise (chosse the region while creating resource group)
+in this resourcegroup  we create a resource in defult region or different region
+in a single resource goup - can create diffrenet resource in diff region
+vm1 - ind
+vm2 - east asia
+
+
+intranet = local n/w connect using private ip
+internet = access over the global using public-ip
+
+--------------------------------------------------------------------
+storage in azure 
+
+# https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
+
+The name must be unique across all existing storage account names in Azure. 
+It must be 3 to 24 characters long, and can contain only lowercase letters and numbers
+
+# https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+
+Locally redundant storage (LRS) replicates the data within your storage accounts to one or more Azure availability zones located in the primary region of your choice
+
+Zone-redundant storage (ZRS) copies your data synchronously across three or more Azure availability zones in the primary region. For applications requiring high availability, Microsoft recommends using ZRS in the primary region, and also replicating to a secondary region.
+
+Geo-redundant storage (GRS) copies your data synchronously within one or more Azure availability zones in the primary region using LRS. It then copies your data asynchronously to the secondary region. 
+Within the secondary region, your data is copied synchronously using LRS.
+
+Geo-zone-redundant storage (GZRS) copies your data synchronously across three or more Azure availability zones in the primary region using ZRS. 
+It then copies your data asynchronously to the secondary region. 
+Within the secondary region, your data is copied synchronously using LRS.
+
+
+----------------------------------------------------------------------------------
+Storage service			Endpoint
+----------------------------------------------------------------------------------
+Blob Storage			https://<storage-account>.blob.core.windows.net
+Static website (Blob Storage)	https://<storage-account>.web.core.windows.net
+Data Lake Storage		https://<storage-account>.dfs.core.windows.net
+Azure Files			https://<storage-account>.file.core.windows.net
+Queue Storage			https://<storage-account>.queue.core.windows.net
+Table Storage			https://<storage-account>.table.core.windows.net
+----------------------------------------------------------------------------------
+
+create storage account choose with type of storege required blob,file,table,queue
+then create a container inside the container can store any objetcs
+
+if the storage create using blob then only we can create Data lake stoarge
+in Hierarchical Namespace  need to Enable hierarchical namespace to create data lake storage
+
+---
+Hierarchical namespace, complemented by Data Lake Storage Gen2 endpoint, enables file and directory semantics, accelerates big data analytics workloads, and enables access control lists (ACLs)Learn more
+
+Enable hierarchical namespace *
+---
+
+
+https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview#default-account-access-tier-setting
+
+Hot tier:
+	Higher storage costs, but lower access and transaction costs
+	Minimum recommended data retention period	N/A
+	Latency (Time to first byte)			Milliseconds
+	Supported redundancy configurations		All
+	
+Cool tier:
+	Lower storage costs, but higher access and transaction costs
+	Minimum recommended data retention period	30 days
+	Latency (Time to first byte)			Milliseconds
+	Supported redundancy configurations		All	
+	
+
+Cold tier:
+	Lower storage costs, but higher access and transaction costs
+	Minimum recommended data retention period	90 days
+	Latency (Time to first byte)			Milliseconds
+	Supported redundancy configurations		All
+
+
+Archive tier:
+	Lowest storage costs, but highest access, and transaction costs
+	Minimum recommended data retention period	180 days
+	Latency (Time to first byte)			Hours2
+	Supported redundancy configurations		LRS, GRS, and RA-GRS3 only
+
+
+before enable versioning
+
+file1 -
+	123
+	abc
+	a1b2c3
+	xyz
+	
+
+after enable versioning (version are logical) whien used the veriosnid to vire the file then can see the content what we stored in that version
+
+file1 -
+	123  	1
+	abc     2
+	a1b2c3	3
+	xyz	
